@@ -38,7 +38,7 @@ const Layout = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/">Home2</Nav.Link>
+              <Nav.Link href="/home2">Home2</Nav.Link>
               <Nav.Link href="/category">Category</Nav.Link>
 
 

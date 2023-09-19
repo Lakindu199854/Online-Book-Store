@@ -8,7 +8,7 @@ import Home2 from './pages/Home2';
 import Book from './pages/Book';
 import Cart from './pages/Cart';
 import Category from './pages/Category'
-
+import Users from './pages/Users'
 // import BookDetail from './pages/BookDetail'; // Import the BookDetail component
 
 function App() {
@@ -16,8 +16,9 @@ function App() {
   return ( 
     <BrowserRouter>
       <Routes>      
-        <Route path="/" element={<Layout/>}>
-        <Route path="/" element={<Home2/>}/> 
+          <Route path="/" element={<Layout/>}>
+          <Route path="/" element={<Users/>}/> 
+          <Route path="/home2" element={<Home2/>}/> 
           <Route path="/help" element={<Help/>}/> 
           <Route path="/book" element={<Book/>}/> 
           <Route path="/cart" element={<Cart/>}/>

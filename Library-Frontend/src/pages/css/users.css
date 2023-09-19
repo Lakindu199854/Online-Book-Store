@@ -1,0 +1,11 @@
+form label{
+    color: white;
+}
+
+.CreateUserButton {
+    border-radius: 0; /* Set the border-radius to 0 for square edges */
+  }
+
+p{
+    color: green;
+}
