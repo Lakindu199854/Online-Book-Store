@@ -1,0 +1,35 @@
+
+.card {
+    height: 100%; /* Set the desired fixed height for the cards */
+    width: 100%;
+  }
+
+
+
+.card-image {
+  width: 100%; /* Set the desired width */
+  height: 600px; /* Set the desired height */
+  object-fit: cover; /* This property ensures the image covers the specified dimensions */
+}
+
+body {
+    background-color: black;
+  }
+
+
+  .card {
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease; /* Add transitions for transform, box-shadow, and background-color */
+  }
+  
+  .card:hover {
+    transform: translateY(-10px); /* Adjust the value to control the "pop" effect */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add a subtle box-shadow on hover */
+    background-color: #8b8989; /* Change the background color to a noticeable color on hover */
+    
+  }
+
+  a {
+    text-decoration: none; /* Remove underlines from links */
+  }
+
+ 

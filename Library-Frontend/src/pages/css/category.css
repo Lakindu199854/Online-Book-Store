@@ -1,0 +1,12 @@
+.card {
+    height: 100%; /* Set the desired fixed height for the cards */
+    width: 100%;
+  }
+
+
+
+.card-image {
+  width: 100%; /* Set the desired width */
+  height: 600px; /* Set the desired height */
+  object-fit: cover; /* This property ensures the image covers the specified dimensions */
+}
