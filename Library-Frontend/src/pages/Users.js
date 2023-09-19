@@ -23,13 +23,29 @@ const Users=()=>{
             "password": Password,
             "email": email
         }
-        const res=await createUser(data);
-        console.log(res);
-        if(res){
+        try{ const res=await createUser(data);
+            console.log("res is :"+res);
             setPassword("");
             setUsername("");
             setEmail("");
-            setSuccessMessage("User Successfully Saved")
+
+            if(res){
+                console.log("123")
+            }
+            if(res.success){
+                console.log("321")
+            }
+
+            if(res && res.success){
+                setSuccessMessage("User Successfully Saved")
+            }else{
+                console.log(1)
+                setSuccessMessage("User Not Added")
+            }
+        }catch(error){
+            console.log(error);
+            setSuccessMessage("User Not Added")
+
         }
     }
 
@@ -60,7 +76,7 @@ const Users=()=>{
                 }} />
             </Form.Group> 
             <Button className='CreateUserButton' type='submit'  variant="primary" >Create User</Button>{' '}
-            <p>{successMessage}</p>
+            <p className={successMessage==="User Not Added" ? "error_message" :""}>{successMessage}</p>
             
         </Form>
       );

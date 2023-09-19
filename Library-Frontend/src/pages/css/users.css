@@ -9,3 +9,7 @@ form label{
 p{
     color: green;
 }
+
+.error_message{
+    color: red;
+}

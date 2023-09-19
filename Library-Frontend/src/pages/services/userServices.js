@@ -5,6 +5,7 @@ export const createUser=async(data)=>{
         const response=await axios.post("http://localhost:9500/users",data)
          return await response.data;
     }catch(error){
+        console.log("error is :"+error)
         return error;
     }
 
