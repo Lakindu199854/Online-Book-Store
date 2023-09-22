@@ -10,10 +10,12 @@ import com.kade.kade.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
+ 
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository){
         this.userRepository=userRepository;
+        
     }
 
     @Override
@@ -29,6 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) {
+       
         return userRepository.save(user);
     }
 
