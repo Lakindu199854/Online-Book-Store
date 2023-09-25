@@ -13,3 +13,11 @@ p{
 .error_message{
     color: red;
 }
+
+h1{
+    color: aquamarine;
+}
+
+.loginSuccessMessage{
+    color: red;
+}

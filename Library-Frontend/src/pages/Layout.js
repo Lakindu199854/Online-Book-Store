@@ -9,6 +9,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useEffect, useState } from "react";
 import { getAllCategories } from "./services/bookServices";
+import '../pages/css/layout.css';
 
 
 const Layout = () => {
@@ -34,7 +35,7 @@ const Layout = () => {
 
       <Navbar expand="lg" bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">LIBRARY</Navbar.Brand>
+          <Navbar.Brand href="/home2">LIBRARY</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">

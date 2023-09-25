@@ -53,7 +53,7 @@ const Book=()=>{
     return(
         <div>
             
-             <h1>Book Details</h1>
+             
              <ListGroup>
 
              <ListGroup.Item>

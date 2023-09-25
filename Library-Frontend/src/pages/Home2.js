@@ -35,7 +35,7 @@ const Home2 = () => {
   return (
     <div className="Home2">
       {books &&
-        <Container> {/* Use the fluid prop to create a full-width container */}
+        <Container className="container"> {/* Use the fluid prop to create a full-width container */}
           <Row xs={1} md={3} className="g-4">
             {books.map((book, idx) => (
               <Col key={idx} className="d-flex justify-content-start">

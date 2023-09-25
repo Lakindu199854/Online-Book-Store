@@ -47,7 +47,7 @@ const Help=()=>{
                     <Card >
                     <Link to={`/book/${book.id}`}>
                         
-                        <Card.Img variant="top"  src={`/${book.imgLink}`} className="card-image" />
+                        <Card.Img variant="top"  src={`${book.imgLink}`} className="card-image" />
                         <Card.Body>
                         <Card.Title>{book.name}</Card.Title>
                         <Card.Subtitle>Author:{book.imgLink}</Card.Subtitle>
