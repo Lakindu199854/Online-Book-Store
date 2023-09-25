@@ -11,11 +11,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import './Book.scss';
 import { Link } from 'react-router-dom';
+import { addCartItemToCart } from './services/cartService';
 
 
 const Book=()=>{
 
     const {bookId}=useParams();
+    
+    const cartId=parseInt(localStorage.getItem("cartId"))
+    const [successMessage, setSuccessMessage] = useState("");
+    
 
 
 
@@ -28,11 +33,21 @@ const Book=()=>{
 
     useEffect(()=>{
         bookRequest();
-    })
+        console.log("cartId is :-"+cartId);
+        console.log("bookId is :-"+bookId);
+    },[])
 
 
-    const createNewCartAndAddItem=()=>{
-        
+    const addItemToCart=async()=>{
+        try{
+            const res = await addCartItemToCart(cartId,bookId);
+            console.log("res:"+res);
+            setSuccessMessage("Successfully added to cart")
+        }catch(error){
+            console.log(error);
+        }
+       
+
     }
 
     return(
@@ -45,7 +60,7 @@ const Book=()=>{
                         {book &&(
                             <div>
                                 <Card className='card' style={{ width: '18rem' }}>
-                                <Card.Img variant="top" src={`/${book.imgLink}`}/>
+                                <Card.Img variant="top" src={`${book.imgLink}`}/>
                                     <Card.Body>
                                     <div><h5>Details:</h5>{book.imgLink}</div>
                                     <div><h5>Name:</h5>{book.name}</div>
@@ -58,13 +73,12 @@ const Book=()=>{
                                         </Card.Text>
                                         
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <Link to={`/cart/${book.id}`}>
-                                                <button className="cart-button" onClick={createNewCartAndAddItem}>
+                                            
+                                                <button className="cart-button" onClick={addItemToCart}>
                                                 <FontAwesomeIcon icon={faShoppingCart} /> Add To Cart
                                                 </button>
-                                            </Link>
+                                                <p>{successMessage}</p>
                                        
-                                            <button className="label">Another Button</button>
                                         </div>
                                         
                                         

@@ -54,7 +54,6 @@ const Category = () => {
                             </Card.Text>
                         </Card.Body>
                     </Link> 
-                 
                 </Card>
               </Col>
             ))}

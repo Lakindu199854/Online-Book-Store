@@ -9,13 +9,15 @@ import Book from './pages/Book';
 import Cart from './pages/Cart';
 import Category from './pages/Category'
 import Users from './pages/Users'
+import Checkout from './pages/Checkout'
 // import BookDetail from './pages/BookDetail'; // Import the BookDetail component
 
 function App() {
   
   return ( 
     <BrowserRouter>
-      <Routes>      
+      <Routes>  
+
           <Route path="/" element={<Layout/>}>
           <Route path="/" element={<Users/>}/> 
           <Route path="/home2" element={<Home2/>}/> 
@@ -26,6 +28,7 @@ function App() {
           <Route path="/book/:bookId" element={<Book/>} /> {/* Updated route to accept bookId */}
           <Route path="/help/:categoryId" element={<Help/>} />
           <Route path="/cart/:bookId" element={<Cart/>} />
+          <Route path="/checkout" element={<Checkout/>} />
 
         </Route>
       </Routes>

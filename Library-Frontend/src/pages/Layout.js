@@ -63,9 +63,6 @@ const Layout = () => {
               <Nav.Link href="/Cart">
               <FontAwesomeIcon icon={faShoppingCart} />
               </Nav.Link>
-              
-            
-
             </Nav>
           </Navbar.Collapse>
         </Container>

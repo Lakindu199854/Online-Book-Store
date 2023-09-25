@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import "./css/users.css";
 import Button from "react-bootstrap/Button";
@@ -12,6 +12,15 @@ const Users = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [cartId, setCartId] = useState(null);
 
+
+
+    useEffect(()=>{
+        if(cartId!=null){
+            console.log("cartId is:"+cartId)
+            localStorage.setItem('cartId',cartId.toString());
+        }
+    },[cartId])
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
@@ -24,11 +33,11 @@ const Users = () => {
       console.log("res is :" + res.id);
 
       try {
-        console.log("hi")
+      
         const res2 = await createCartByUserId(res.id);
         console.log("res2 is :" + res2.cart.user.username);
         setCartId(res2.cart.id);
-        localStorage.setItem('cartId',cartId.toString());
+        console.log("cartIt is:"+res2.cart.id)
       } catch (error) {
         console.log(error);
       }

@@ -27,12 +27,8 @@ const Help=()=>{
         }catch(error){
             console.log(error);
         }
-       
-        
     }
  
-
-
     useEffect(()=>{
         console.log(categoryId);
         // console.log("1");
