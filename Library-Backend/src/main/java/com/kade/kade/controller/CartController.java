@@ -98,6 +98,7 @@ public class CartController {
 
     @DeleteMapping("/{cartId}/remove/{cartItemId}")
     public ResponseEntity<Cart> removeItemFromCart(@PathVariable Long cartId, @PathVariable Long cartItemId) {
+        System.out.println("testing");
         Cart cart = cartService.removeItemFromCart(cartId, cartItemId);
         if (cart == null) {
             return ResponseEntity.notFound().build();

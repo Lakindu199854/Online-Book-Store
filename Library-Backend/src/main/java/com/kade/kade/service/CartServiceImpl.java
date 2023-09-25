@@ -86,14 +86,7 @@ public class CartServiceImpl implements CartService {
         return cart;
     }
 
-  
-    @Override
-    
-    public CartItemInCart combineItemAndCart(Cart cart, List<CartItem> cartItems) {
-        return new CartItemInCart(cartItems, cart);
-    }
-    
-
+ 
     @Override
     @Transactional
     public Cart updateCartItemQuantity(Long cartItemId, int newQuantity) {

@@ -22,6 +22,5 @@ public interface CartService {
 
     void clearCart(Long cartId);
 
-    CartItemInCart combineItemAndCart(Cart cart,List<CartItem> cartItem);
 
 }
