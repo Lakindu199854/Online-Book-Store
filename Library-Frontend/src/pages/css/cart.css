@@ -1,11 +1,43 @@
-.add {
-  margin-top: 0.5vh;
-}
 
-.minus {
+.button{
   margin-top: 0.5vh;
 }
 
 .submit{
     margin: 1vh;
+}
+
+.Container {
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
+  height: 100vh; /* Adjust the height as needed */
+}
+.add_remove{
+  margin-top: 4vh;
+}
+
+.list-group{
+  margin-top: 2vh;
+}
+
+.emptyContainer{
+  background-color: #5BA181;
+ 
+  height: 50%;
+  width: 50%;
+
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
+  border-radius: 5vh;
+}
+
+.p{
+  height: 50%;
+  width: 50%;
+}
+
+.emptyContainer{
+  flex-direction: column;
 }

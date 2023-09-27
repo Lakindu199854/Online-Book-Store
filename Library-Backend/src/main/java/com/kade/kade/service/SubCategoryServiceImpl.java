@@ -9,15 +9,19 @@ import org.springframework.stereotype.Service;
 import com.kade.kade.entity.Category;
 import com.kade.kade.entity.Subcategory;
 import com.kade.kade.repository.SubcategoryRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 @Service
 public class SubCategoryServiceImpl implements SubCategoryService {
 
     private SubcategoryRepository subcategoryRepository;
+    private CategoryService categoryService;
 
     @Autowired
-    public SubCategoryServiceImpl(SubcategoryRepository subcategoryRepository){
+    public SubCategoryServiceImpl(SubcategoryRepository subcategoryRepository,CategoryService categoryService){
         this.subcategoryRepository=subcategoryRepository;
+        this.categoryService=categoryService;
     }
 
     @Override
@@ -27,7 +31,7 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 
     @Override
     public Subcategory getSubcategoryById(Long id) {
-       return subcategoryRepository.findById(id).orElseThrow(()-> new NoSuchElementException("Category Not Found"+id));
+       return subcategoryRepository.findById(id).orElseThrow(()-> new NoSuchElementException("Subcategory Not Found"+id));
     }
 
     @Override
@@ -48,6 +52,10 @@ public class SubCategoryServiceImpl implements SubCategoryService {
       subcategoryRepository.deleteById(id);
     }
 
+    // @Override
+    // public List<Subcategory> getSubcategoryByCategoryId(Long categoryId){
+    //     return subcategoryRepository.findSubcategoriesByCategoryId(categoryId).orElseThrow(()-> new NoSuchElementException("Subcategory Not Found"+categoryId));
+    // }
  
  
    

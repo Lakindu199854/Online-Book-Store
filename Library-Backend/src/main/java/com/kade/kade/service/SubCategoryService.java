@@ -9,5 +9,6 @@ public interface SubCategoryService {
     Subcategory getSubcategoryById(Long id);
     Subcategory createSubcategory(Subcategory subcategory);
     Subcategory updatesSubCategory(Long id,Subcategory subcategory);
+    // Subcategory getSubcategoryByCategoryId(Long categoryId);
     void deleteSubCategory(Long id); 
 }

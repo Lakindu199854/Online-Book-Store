@@ -51,6 +51,17 @@ public class SubcategoryController {
         }
         
     }
+//  @GetMapping("/{categoryId}")
+//     public ResponseEntity <List<Subcategory>>getSubcategoriesByCategoryId(@PathVariable Long categoryId){
+//         try{
+//             List <Subcategory> subcategories=subcategoryService.getSubcategoryByCategoryId(categoryId);
+//             return ResponseEntity.status(HttpStatus.OK).body(subcategories);
+//         }catch(Exception e){
+//              return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+//         }
+        
+//     }
+
 
     @PostMapping
     public ResponseEntity<Subcategory> saveSubCaatogory(@RequestBody Subcategory subcategory){

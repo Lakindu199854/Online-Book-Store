@@ -71,6 +71,8 @@ public class CartController {
         return ResponseEntity.ok(cartItems);
     }
 
+    
+
     @PostMapping("/{cartId}/add")
     public ResponseEntity<List<CartItem>> addItemToCart(@PathVariable Long cartId, @RequestParam Long productId, @RequestParam int quantity) {
         System.out.println(cartId);
@@ -111,4 +113,7 @@ public class CartController {
         cartService.clearCart(cartId);
         return ResponseEntity.noContent().build();
     }
+
+
+
 }
