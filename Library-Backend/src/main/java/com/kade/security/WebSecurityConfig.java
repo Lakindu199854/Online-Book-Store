@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.kade.security.jwt.AuthEntryPointJwt;
 import com.kade.security.jwt.AuthTokenFilter;
+import com.kade.security.jwt.UserDetailsServiceImpl;
 
 @Configuration
 //For configurations we use this
@@ -26,14 +27,19 @@ public class WebSecurityConfig {
 
     //Now we bring in our utilities=========================================================================
     @Autowired
-    UserDetailsService userDetailsService; //Here we get an error
+    UserDetailsServiceImpl userDetailsService;
         
 
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
     
+    @Bean
+    public UserDetailsService userDetailsService(){
+        return userDetailsService; 
+    }
      
  
+
     @Bean 
     //Configgurations are written in Bean annotations
     public AuthTokenFilter authenticationJwAuthTokenFilter(){
@@ -81,6 +87,7 @@ public class WebSecurityConfig {
         );
     http.authenticationProvider(authenticationProvider());
     http.addFilterBefore(authenticationJwAuthTokenFilter(),UsernamePasswordAuthenticationFilter.class);
+    //Filters the request
     return http.build();
     }
 
