@@ -1,12 +1,8 @@
 package com.kade.security.jwt;
 
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.UnsupportedJwtException;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
+import java.security.Key;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,8 +10,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.security.Key;
-import java.util.Date;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtUtils {
@@ -37,13 +38,15 @@ public class JwtUtils {
          .compact();
     }
 
-    public Key key(){    //This function is used to sign the Jwt tocken using the secret
+     //This function is used to sign the Jwt tocken using the secret
+     //Here we don't use abcd12345 directly,We decode it using BASE64 decorder to 64 bits and use it.
+    public Key key(){   
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
     }
 
     public boolean validateJwtTocken(String authToken){
         try{
-            Jwts.parserBuilder().setSigningKey(key()).build().parse(authToken,null); //We should use the same key for the validation(This is obvious)
+            Jwts.parserBuilder().setSigningKey(key()).build().parse(authToken); //We should use the same key for the validation(This is obvious)
             return true; //here if the JWT is valid we return true
         }catch(MalformedJwtException e){
             logger.error("Invalid JWT token: ",e.getMessage());

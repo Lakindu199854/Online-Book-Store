@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.kade.security.jwt.AuthEntryPointJwt;
 import com.kade.security.jwt.AuthTokenFilter;
-import com.kade.security.jwt.UserDetailsServiceImpl;
+
 
 @Configuration
 //For configurations we use this
@@ -27,9 +27,8 @@ public class WebSecurityConfig {
 
     //Now we bring in our utilities=========================================================================
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+     UserDetailsServiceImpl userDetailsService;
         
-
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
     
@@ -37,17 +36,13 @@ public class WebSecurityConfig {
     public UserDetailsService userDetailsService(){
         return userDetailsService; 
     }
-     
  
-
     @Bean 
     //Configgurations are written in Bean annotations
     public AuthTokenFilter authenticationJwAuthTokenFilter(){
         return new AuthTokenFilter();
     }
 
- 
- 
     @Bean 
     //Configgurations are written in Bean annotations
     public DaoAuthenticationProvider authenticationProvider(){
@@ -60,8 +55,10 @@ public class WebSecurityConfig {
 
 
    //Here we define the password encoder
-    private PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(null, 0);
+   //When registering a user the password is saved in the databse after encoding using this encoder
+   @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -86,6 +83,7 @@ public class WebSecurityConfig {
         .anyRequest().authenticated()
         );
     http.authenticationProvider(authenticationProvider());
+    //Defining the authentication provider
     http.addFilterBefore(authenticationJwAuthTokenFilter(),UsernamePasswordAuthenticationFilter.class);
     //Filters the request
     return http.build();
