@@ -10,13 +10,16 @@ import Cart from "./pages/Cart";
 import Category from "./pages/Category";
 import Users from "./pages/Users";
 import Checkout from "./pages/Checkout";
+import Login from "./pages/AuthPages/Login"
+import Register from "./pages/AuthPages/Register"
 // import BookDetail from './pages/BookDetail'; // Import the BookDetail component
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Users />} />
+        {/* <Route path="/" element={<Users />} /> */}
+        <Route path="/register" element={<Register />} />
 
         <Route path="/" element={<Layout />}>
           {/* <Route path="/" element={<Users/>}/>  */}
@@ -30,6 +33,9 @@ function App() {
           <Route path="/help/:categoryId" element={<Help />} />
           <Route path="/cart/:bookId" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/login" element={<Login />} />
+        
+          
         </Route>
       </Routes>
     </BrowserRouter>

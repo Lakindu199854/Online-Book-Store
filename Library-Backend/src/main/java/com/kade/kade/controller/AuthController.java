@@ -21,7 +21,7 @@ import com.kade.kade.payloads.responses.MessageResponse;
 import com.kade.kade.repository.UserRepository;
 import com.kade.security.jwt.JwtUtils;
 
-
+@CrossOrigin(origins="*")
 @RestController
 public class AuthController {
     @Autowired
