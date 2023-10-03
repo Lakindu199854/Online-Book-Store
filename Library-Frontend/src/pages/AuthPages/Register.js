@@ -51,7 +51,7 @@ const Register = () => {
       const response = await axios.post(
         "http://localhost:9500/auth/register",data
       );
-      navigate("/login")
+      // navigate("/login")
       setErrorMessage("");
     } catch (error) {
       setErrorMessage(error.response.data.message);

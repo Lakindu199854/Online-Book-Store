@@ -3,13 +3,16 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect, useState } from "react";
-import { getCartItemsByCartId } from "./services/cartService";
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../pages/css/cart.css";
-import { updateCartItemQuantity } from "./services/cartService";
+import {
+  getCartItemsByCartId,
+  removeItemFromCart,
+  updateCartItemQuantity,
+} from "./services/cartService";
 import { Link } from "react-router-dom";
-import { removeItemFromCart } from "./services/cartService";
 
 const Cart = () => {
   const [item, setItem] = useState([]);
@@ -21,9 +24,9 @@ const Cart = () => {
     try {
       const res = await getCartItemsByCartId(cartId);
       console.log("poppy");
-      
+      console.log(cartId);
+
       setItem(res);
-     
     } catch (error) {
       console.log(error);
     }
@@ -52,21 +55,17 @@ const Cart = () => {
     }
   };
 
-  
   useEffect(() => {
     console.log(item.length);
-    if (item.length!==0) {
+    if (item.length !== 0) {
       setIsEmpty(false);
     }
   }, [item]);
 
   useEffect(() => {
-    
     getCartItems();
   }, []);
 
-  
-  
   const handleAdd = async (cartItemId, quantity) => {
     await updateQuantity(cartItemId, quantity + 1);
     getCartItems();
@@ -93,9 +92,9 @@ const Cart = () => {
 
           <div>
             <Link to={`/home`}>
-            <Button  variant="secondary" size="lg" >
-             Back To Shopping
-            </Button>{" "}
+              <Button variant="secondary" size="lg">
+                Back To Shopping
+              </Button>{" "}
             </Link>
           </div>
         </div>

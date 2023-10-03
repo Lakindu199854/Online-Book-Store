@@ -5,12 +5,16 @@ import Form from "react-bootstrap/Form";
 
 import "../css/users.css";
 import Button from "react-bootstrap/Button";
-import { createUser } from "../services/userServices";
-import { createCartByUserId } from "../services/cartService";
+
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { getAllusers } from "../services/userServices";
+
 import { Link, useNavigate } from "react-router-dom";
+import { createCartByUserId } from "../services/cartService";
+
+
+
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -25,21 +29,8 @@ const Login = () => {
   const navigate=useNavigate();
 
 
-  useEffect(() => {
-    if (userId !== null && cartId !== null) {
-      storeCartandUser();
-    }
-  }, [cartId, userId]);
-
-  const storeCartandUser = () => {
-    if (cartId != null) {
-      console.log("cartId is in users:" + cartId);
-      localStorage.setItem("cartId", cartId.toString());
-      localStorage.setItem("userId", cartId.toString());
-    }
-  };
-
-
+ 
+  
   const handleLogin = async (event) => {
     event.preventDefault();
     const data = {
@@ -50,16 +41,31 @@ const Login = () => {
       const response = await axios.post(
         "http://localhost:9500/auth/login",data
       );
+      
       console.log(response);
       setErrorMessage("");
-     sessionStorage.setItem('token',response.data.token);
-     sessionStorage.setItem('username',response.data.username);
-     sessionStorage.setItem('userid',response.data.id);
+      localStorage.setItem('token',response.data.token);
+      localStorage.setItem('username',response.data.username);
+      localStorage.setItem('userid',response.data.id);
+        axios.defaults.headers.common['Authorization']=`Bearer ${response.data.token}`;
+       
 
-      
+        try {
+          const res = await createCartByUserId(response.data.id);
+          console.log(res);
+          console.log("cart Id is : "+res.cart.id);
+          localStorage.setItem('cartId',res.cart.id);
+          setCartId(res.cart.id);
+        } catch (error) {
+          console.log(error);
+        }
+        navigate("/home")
+        
     } catch (error) {
       setErrorMessage("Invalid username or password");
     }
+
+    
   };
 
   const handleUsername = (event) => {

@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getBookById } from "./services/bookServices";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -12,25 +11,29 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "./Book.scss";
 import { Link } from "react-router-dom";
 import { addCartItemToCart } from "./services/cartService";
+import { getBookById } from "./services/bookServices";
+
+
 
 const Book = () => {
   const { bookId } = useParams();
 
-  const cartId = parseInt(localStorage.getItem("cartId"));
+  const cartId = localStorage.getItem('cartId');
   const [successMessage, setSuccessMessage] = useState("");
 
   const [book, setBook] = useState(null);
 
   const bookRequest = async () => {
     const res = await getBookById(bookId);
-    await setBook(res);
+    console.log("res:" + res);
+    setBook(res);
   };
 
   useEffect(() => {
     bookRequest();
     console.log("cartId is :-" + cartId);
     console.log("bookId is :-" + bookId);
-  }, []);
+  }, [cartId,bookId]);
 
   const addItemToCart = async () => {
     try {

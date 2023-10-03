@@ -1,34 +1,31 @@
-import { getBooks, getBookById } from "./services/bookServices";
+
 import { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from 'react-bootstrap/Button';
-import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import { Container } from "react-bootstrap";
 
 import '../App.scss';
-
+import { getBooks } from "./services/bookServices";
 
 
 const Home = () => {
   const [books, setBooks] = useState(null);
-  const [bookDetail, setbookDetail] = useState(null);
-
-  const getBookDetails = async (id) => {
-    const res = await getBookById(id);
-    console.log("res:" + res);
-    await setbookDetail(res);
-  };
-
+ 
   const bookRequest = async () => {
     const res = await getBooks();
-    console.log("res:" + res);
-    await setBooks(res);
+    setBooks(res);
+    console.log("res is :"+res)
   };
 
   useEffect(() => {
+    const bookRequest = async () => {
+      const res = await getBooks();
+      setBooks(res);
+      console.log("res is :"+res)
+    };
     bookRequest();
   }, []);
 
@@ -39,7 +36,7 @@ const Home = () => {
           <Row xs={1} md={3} className="g-4">
             {books.map((book, idx) => (
               <Col key={idx} className="d-flex justify-content-start">
-                <Card>
+                <Card >
                 <Link to={`/book/${book.id}`}> 
                     <Card.Img variant="top" src={book.imgLink} className="card-image" />
                     <Card.Body>
@@ -63,4 +60,4 @@ const Home = () => {
   );
 }
 
-export default Home;
+export default Home
