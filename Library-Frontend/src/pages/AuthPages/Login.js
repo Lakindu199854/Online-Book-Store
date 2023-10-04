@@ -42,19 +42,20 @@ const Login = () => {
         "http://localhost:9500/auth/login",data
       );
       
-      console.log(response);
+      console.log(response);   
       setErrorMessage("");
-      localStorage.setItem('token',response.data.token);
-      localStorage.setItem('username',response.data.username);
-      localStorage.setItem('userid',response.data.id);
-        axios.defaults.headers.common['Authorization']=`Bearer ${response.data.token}`;
+      sessionStorage.setItem('token',response.data.token);
+      sessionStorage.setItem('username',response.data.username);
+      sessionStorage.setItem('userid',response.data.id);
+      axios.defaults.headers.common['Authorization']=`Bearer ${response.data.token}`;
        
 
         try {
+          
           const res = await createCartByUserId(response.data.id);
           console.log(res);
           console.log("cart Id is : "+res.cart.id);
-          localStorage.setItem('cartId',res.cart.id);
+          sessionStorage.setItem('cartId',res.cart.id);
           setCartId(res.cart.id);
         } catch (error) {
           console.log(error);
@@ -132,6 +133,8 @@ const Login = () => {
               </Button>{" "}
               {errorMessage && 
               <div className="text-danger mb-3">{errorMessage}</div>}
+              <Link to="/register">Don't have an account? Sign up</Link>
+
               
              
             </Form>

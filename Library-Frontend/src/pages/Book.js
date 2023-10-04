@@ -18,7 +18,7 @@ import { getBookById } from "./services/bookServices";
 const Book = () => {
   const { bookId } = useParams();
 
-  const cartId = localStorage.getItem('cartId');
+  const cartId = sessionStorage.getItem('cartId');
   const [successMessage, setSuccessMessage] = useState("");
 
   const [book, setBook] = useState(null);
@@ -54,22 +54,22 @@ const Book = () => {
               <Card className="card" style={{ width: "18rem" }}>
                 <Card.Img variant="top" src={`${book.imgLink}`} />
                 <Card.Body>
-                  <div>
-                    <h5>Details:</h5>
-                    {book.imgLink}
-                  </div>
+                  
                   <div>
                     <h5>Name:</h5>
                     {book.name}
                   </div>
+                  <br />
                   <div>
                     <h5>Author:</h5>
                     {book.author}
                   </div>
+                  <br />
                   <div>
                     <h5>Price:</h5>
-                    {book.price}
+                    ${book.price}
                   </div>
+                  <br />
 
                   <Card.Title>Description</Card.Title>
                   <Card.Text>

@@ -34,11 +34,10 @@ const Register = () => {
   const storeCartandUser = () => {
     if (cartId != null) {
       console.log("cartId is in users:" + cartId);
-      localStorage.setItem("cartId", cartId.toString());
-      localStorage.setItem("userId", cartId.toString());
+      sessionStorage.setItem("cartId", cartId.toString());
+      sessionStorage.setItem("userId", cartId.toString());
     }
   };
-
 
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -51,7 +50,7 @@ const Register = () => {
       const response = await axios.post(
         "http://localhost:9500/auth/register",data
       );
-      // navigate("/login")
+      navigate("/login")
       setErrorMessage("");
     } catch (error) {
       setErrorMessage(error.response.data.message);
@@ -88,6 +87,7 @@ const Register = () => {
       setRegisterEnebled(true);
     }
   };
+
 
   return (
     <div>
@@ -142,9 +142,8 @@ const Register = () => {
               </Button>{" "}
               {errorMessage && 
               <div className="errorMessage">{errorMessage}</div>}
-              
-             
             </Form>
+            <Link to="/login">Already have an account? Sign in</Link>
           </Col>
         </Row>
       </div>

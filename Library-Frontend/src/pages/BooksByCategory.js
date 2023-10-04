@@ -12,7 +12,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import './Book.scss';
 import { Link } from 'react-router-dom';
 
-const Help=()=>{
+const BooksByCategory=()=>{
 
     const {categoryId}=useParams();
     const[books,setBooks]=useState([]);
@@ -69,4 +69,4 @@ const Help=()=>{
         </div>
     );
 }
-export default Help
+export default BooksByCategory

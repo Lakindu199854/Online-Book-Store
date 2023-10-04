@@ -11,22 +11,20 @@ import '../App.scss';
 import { getBooks } from "./services/bookServices";
 
 
+
+
 const Home = () => {
   const [books, setBooks] = useState(null);
- 
-  const bookRequest = async () => {
-    const res = await getBooks();
-    setBooks(res);
-    console.log("res is :"+res)
-  };
+  
 
+ 
   useEffect(() => {
-    const bookRequest = async () => {
-      const res = await getBooks();
+    const getAllBooks = async () => {
+      const res = await getBooks("/books");
       setBooks(res);
       console.log("res is :"+res)
     };
-    bookRequest();
+    getAllBooks(); 
   }, []);
 
   return (
@@ -41,11 +39,12 @@ const Home = () => {
                     <Card.Img variant="top" src={book.imgLink} className="card-image" />
                     <Card.Body>
                     <Card.Title>{book.name}</Card.Title>
-                    <Card.Subtitle>Author:{book.author}</Card.Subtitle>
-                    <Card.Subtitle>Price:{book.price}</Card.Subtitle>
-                    <Card.Subtitle>Category:{book.category.name}</Card.Subtitle>
-                    <Card.Subtitle>SubCategory:{book.subcategory.name}</Card.Subtitle>
-                    <Card.Text>
+                    <br />
+                    <Card.Subtitle>Author:{book.author}</Card.Subtitle> <br />
+                    <Card.Subtitle>Price:${book.price}</Card.Subtitle> <br />
+                    <Card.Subtitle>Category:{book.category.name}</Card.Subtitle> <br />
+                    
+                    <Card.Text className="text">
                       {book.description}
                     </Card.Text>
                   </Card.Body>

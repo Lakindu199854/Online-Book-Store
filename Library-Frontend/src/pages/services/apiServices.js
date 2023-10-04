@@ -9,12 +9,13 @@ axios.defaults.headers.common['Authorization']=`Bearer $(token)`;
 
 export const  getRequest=async(path)=>{
     try{
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response=await axios.get(base_url+path);
         return response;
     }catch(error){
-        if(error.response.status==401){
+        if(error.response.status===401){
             sessionStorage.removeItem("token");
-            sessionStorage.removeItem("username");
+            sessionStorage.removeItem("username"); 
             sessionStorage.removeItem("userId");
             window.location.href="/login";
         }
@@ -23,11 +24,12 @@ export const  getRequest=async(path)=>{
 
 export const  postRequest=async(path,data)=>{
     try{
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response=await axios.post(base_url+path,data);
         return response;
     }catch(error){
         //When we have a 401 error then the token  is invalid
-        if(error.response.status==401){
+        if(error.response.status===401){
             sessionStorage.removeItem("token");
             sessionStorage.removeItem("username");
             sessionStorage.removeItem("userId");

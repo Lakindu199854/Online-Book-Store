@@ -16,9 +16,11 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [item, setItem] = useState([]);
-  const cartId = parseInt(localStorage.getItem("cartId"));
+  const cartId = parseInt(sessionStorage.getItem("cartId"));
   const [cartStatue, setCartStatus] = useState("");
   const [isEmpty, setIsEmpty] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+
 
   const getCartItems = async () => {
     try {
@@ -27,6 +29,7 @@ const Cart = () => {
       console.log(cartId);
 
       setItem(res);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -84,12 +87,16 @@ const Cart = () => {
 
   return (
     <div className="Container">
-      {isEmpty ? (
+      {isLoading ? (
+        // JSX to render when isLoading is true
+        <div>Loading...</div>
+      ) : isEmpty ? (
+        // JSX to render when isLoading is false and isEmpty is true
         <div className="emptyContainer">
           <div>
             <h3>Oops!! Your cart is empty</h3>
           </div>
-
+  
           <div>
             <Link to={`/home`}>
               <Button variant="secondary" size="lg">
@@ -99,6 +106,7 @@ const Cart = () => {
           </div>
         </div>
       ) : (
+        // JSX to render when isLoading is false and isEmpty is false
         <div
           className="modal show"
           style={{ display: "block", position: "initial" }}
@@ -114,7 +122,7 @@ const Cart = () => {
                     </ListGroup>
                   ))}
                 </Col>
-
+  
                 <Col>
                   <h2>Quantity</h2>
                   {item.map((element) => (
@@ -152,7 +160,7 @@ const Cart = () => {
                   ))}
                 </Col>
               </Row>
-
+  
               <Link to={`/checkout/`}>
                 <Button className="submit" variant="primary">
                   Proceed To Checkout
@@ -164,5 +172,6 @@ const Cart = () => {
       )}
     </div>
   );
+  
 };
 export default Cart;

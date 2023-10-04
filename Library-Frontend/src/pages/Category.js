@@ -14,9 +14,6 @@ const Category = () => {
     
 
     const [categories, setCategories] = useState([]);
-   
-    
-  
 
     const categoryRequest = async () => {
     try{
@@ -45,7 +42,7 @@ const Category = () => {
             {categories.map((category, id) => (
               <Col key={id} className="d-flex justify-content-start">
                 <Card>
-                     <Link to={`/help/${category.id}`}>  
+                     <Link to={`/booksByCategory/${category.id}`}>  
                         <Card.Img variant="top" src={category.imgLink} className="card-image" />
                         <Card.Body>
                             <Card.Title>{category.name}</Card.Title>

@@ -10,6 +10,7 @@ axios.defaults.headers.common['Authorization']=`Bearer $(token)`;
 
 export const createUser=async(data)=>{
     try{
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response=await axios.post("http://localhost:9500/users",data)
         return response.data;
     }catch(error){
@@ -21,6 +22,7 @@ export const createUser=async(data)=>{
 
 export const getAllusers =async ()=>{
     try{
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response=await axios.get("http://localhost:9500/users");
         return response.data;
     }catch(error){

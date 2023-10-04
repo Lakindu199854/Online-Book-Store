@@ -15,8 +15,8 @@ import { createOrder } from "./services/orderService";
 const Cart = () => {
   const [item, setItem] = useState([]);
   const [total, setTotal] = useState([]);
-  const cartId = parseInt(localStorage.getItem("cartId"));
-  const userId = parseInt(localStorage.getItem("userId"));
+  const cartId = parseInt(sessionStorage.getItem("cartId"));
+  const userId = parseInt(sessionStorage.getItem("userid"));
 
   const [successMessage, setSuccessMessage] = useState("");
   const [name, setName] = useState("");
@@ -32,6 +32,19 @@ const Cart = () => {
       console.log(error);
     }
   };
+
+  useEffect(()=>{
+    getCartItems();
+  },[])
+
+  useEffect(() => {
+    
+    const totalprice = item.reduce((sum, element) => {
+      return sum + element.book.price * element.quantity;
+    }, 0);
+    setTotal(totalprice);
+  }, [item]);
+
 
   const onSubmit = async () => {
     setSuccessMessage("Order Successfully Placed");
@@ -60,14 +73,7 @@ const Cart = () => {
 
   };
 
-  useEffect(() => {
-    getCartItems();
-    const totalprice = item.reduce((sum, element) => {
-      return sum + element.book.price * element.quantity;
-    }, 0);
-    setTotal(totalprice);
-  }, [item]);
-
+  
   return (
     <div
       className="modal show"

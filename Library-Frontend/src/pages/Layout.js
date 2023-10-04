@@ -26,7 +26,10 @@ const Layout = () => {
   };
 
   const deleteLocalStorage = () => {
-    localStorage.clear();
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("userId");
+    window.location.href = "/login";
   };
 
   return (
@@ -53,10 +56,9 @@ const Layout = () => {
                     {categories.map((category) => {
                       return (
                         <Dropdown.Item>
-                          <Link to={`/help/${category.id}`}>
+                          <Link to={`/booksByCategory/${category.id}`}>
                             {category.name}
                           </Link>
-                          {category.id}
                         </Dropdown.Item>
                       );
                     })}

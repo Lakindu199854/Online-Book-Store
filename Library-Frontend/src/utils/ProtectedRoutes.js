@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = ()=>{
     //When there is a token in the session storage there is a logged in user
-    const token=localStorage.getItem("token");
+    const token=sessionStorage.getItem('token');
 
     if(!token){
         return(

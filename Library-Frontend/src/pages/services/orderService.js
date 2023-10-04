@@ -10,6 +10,7 @@ axios.defaults.headers.common['Authorization']=`Bearer $(token)`;
 
 export const createOrder=async(data)=>{
     try{
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response=await axios.post("http://localhost:9500/orders",data)
         return response.data;
     }catch(error){

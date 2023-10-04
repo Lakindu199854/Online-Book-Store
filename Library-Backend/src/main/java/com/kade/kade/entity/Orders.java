@@ -57,10 +57,5 @@ public class Orders {
     @JoinColumn(name = "user_id")  //Foreign key of user entity
     private User user;
 
-    
-
-    
-     
-  
 }
   
