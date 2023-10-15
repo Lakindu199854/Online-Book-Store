@@ -80,6 +80,7 @@ public class WebSecurityConfig {
       .authorizeHttpRequests(auth -> 
         auth.requestMatchers("/auth/***").permitAll()
         //we only allow auth to be accessed without authentication
+        .requestMatchers("/uploads/***").permitAll()
         .anyRequest().authenticated()
         );
     http.authenticationProvider(authenticationProvider());
