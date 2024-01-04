@@ -95,3 +95,5 @@ The checkout page allows you to review your selected books, displaying their nam
 Step 7: Place Your Order
 
 After filling out the order form, finalize your order. A success message will confirm your order's successful placement, expressing gratitude for shopping with the Online Bookstore Application.https://drive.google.com/drive/folders/1W4-dYYzk7m3sZr6duz4DqRen5h6_dnQp?usp=sharing
+
+Demo App Video:https://youtu.be/VS3XaI_P5QQ
